@@ -1,0 +1,51 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trueeventsplatform-dev-131856-authRole",
+      "UnauthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-dev-131856-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-dev-131856-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-trueeventsplatform-dev-131856-deployment",
+      "UnauthRoleName": "amplify-trueeventsplatform-dev-131856-unauthRole",
+      "StackName": "amplify-trueeventsplatform-dev-131856",
+      "StackId": "arn:aws:cloudformation:eu-west-2:493116808527:stack/amplify-trueeventsplatform-dev-131856/95ef3ca0-a1d2-11eb-bbb9-06865a30199c",
+      "AmplifyAppId": "d1cn7z3vraqloy"
+    },
+    "categories": {
+      "auth": {
+        "trueeventsplatform0da5de73": {}
+      }
+    }
+  },
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trueeventsplatform-staging-135805-authRole",
+      "UnauthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-staging-135805-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-staging-135805-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-trueeventsplatform-staging-135805-deployment",
+      "UnauthRoleName": "amplify-trueeventsplatform-staging-135805-unauthRole",
+      "StackName": "amplify-trueeventsplatform-staging-135805",
+      "StackId": "arn:aws:cloudformation:eu-west-2:493116808527:stack/amplify-trueeventsplatform-staging-135805/0cc30f50-a1d8-11eb-943f-067117152770",
+      "AmplifyAppId": "d1cn7z3vraqloy"
+    }
+  },
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trueeventsplatform-main-135950-authRole",
+      "UnauthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-main-135950-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::493116808527:role/amplify-trueeventsplatform-main-135950-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-trueeventsplatform-main-135950-deployment",
+      "UnauthRoleName": "amplify-trueeventsplatform-main-135950-unauthRole",
+      "StackName": "amplify-trueeventsplatform-main-135950",
+      "StackId": "arn:aws:cloudformation:eu-west-2:493116808527:stack/amplify-trueeventsplatform-main-135950/4b630300-a1d8-11eb-a6be-0a355b7dff20",
+      "AmplifyAppId": "d1cn7z3vraqloy"
+    },
+    "categories": {
+      "auth": {
+        "trueeventsplatform0da5de73": {}
+      }
+    }
+  }
+}

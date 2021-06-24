@@ -1,0 +1,41 @@
+type UserClientJoin
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		cognito_sub: ID!
+		client: Client @connection
+	}
+
+type Client
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "byUser", fields: ["join_id", "full_name"] )
+	@model
+	{
+		id: ID!
+		join_id: ID!
+		full_name: String!
+		friendly_name: String!
+		clientdb_instance: String
+		address: String
+		county: String
+		country: String
+		logo: String
+		join_date: AWSDateTime
+		archived: Boolean
+		archive_date: AWSDateTime
+		primary_contact: String
+		contact_email: String
+		contact_phone: String
+		account_manager: String
+		user: UserClientJoin @connection ( fields: ["join_id"] )
+	}
+
+type Setting
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		setting: String!
+		value: String
+	}

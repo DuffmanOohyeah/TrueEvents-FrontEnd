@@ -1,0 +1,183 @@
+type Event
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		client_id: ID!
+		event_name: String!
+		event_logo: String
+		event_desc: String
+		start_date: AWSDateTime
+		end_date: AWSDateTime
+		timezone_abbr: String
+		primary_domain: String
+		other_domains: [String]
+		address: String
+		city: String
+		county: String
+		country: String
+		archived: Boolean
+		archive_date: AWSDateTime
+		sessions: [Session] @connection ( keyName: "byEvent", fields: ["id"] )
+		tables: [Table] @connection ( keyName: "byEvent", fields: ["id"] )
+	}
+
+type Session
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "byEvent", fields: ["event_id"] )
+	@model
+	{
+		id: ID!
+		event_id: ID!
+		session_name: String!
+		session_desc: String
+		start_date: AWSDateTime
+		end_date: AWSDateTime
+		presenters: [Presenter] @connection ( keyName: "bySession", fields: ["id"] )
+		hall: Hall @connection
+		stages: [Stage] @connection ( keyName: "bySession", fields: ["id"] )
+		webinars: [Webinar] @connection ( keyName: "bySession", fields: ["id"] )
+	}
+
+type Presenter
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "bySession", fields: ["session_id"] )
+	@model
+	{
+		id: ID!
+		session_id: ID!
+		title: String
+		first_name: String!
+		last_name: String!
+		email: String
+		company: String
+		profile_img: String
+		social_medias: [PresenterSocialMedia] @connection ( keyName: "byPresenter", fields: ["id"] )
+	}
+
+type Table
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "byEvent", fields: ["event_id"] )
+	@model
+	{
+		id: ID!
+		event_id: ID!
+		table_name: String!
+		capacity: Int
+		table_logo: String
+	}
+
+type Hall
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		hall_name: String!
+		hall_desc: String
+	}
+
+type Stage
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "bySession", fields: ["session_id"] )
+	@model
+	{
+		id: ID!
+		session_id: ID!
+		stage_name: String!
+		stage_desc: String
+	}
+
+type Webinar
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "bySession", fields: ["session_id"] )
+	@model
+	{
+		id: ID!
+		session_id: ID!
+		webinar_name: String!
+		webinar_desc: String
+		webinar_type: String
+		webinar_api_key: String
+		webinar_url: String
+	}
+
+type PresenterSocialMedia
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "byPresenter", fields: ["presenter_id"] )
+	@model
+	{
+		id: ID!
+		presenter_id: ID!
+		site: String!
+		link: String
+	}
+
+type User
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		cognito_sub: ID!
+		title: String
+		first_name: String
+		last_name: String
+		job_title: String
+		profile_img: String
+		ignore: String
+	}
+
+type UserEventGroup
+	@auth ( rules: [{ allow: private }] )
+	@key ( name: "byEvent", fields: ["join_id", "name"] )
+	@model
+	{
+		id: ID!
+		join_id: ID!
+		name: String!
+		active: Boolean
+		user: UserEventJoin @connection ( fields: ["join_id"] )
+	}
+
+type UserEventJoin
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		cognito_sub: ID!
+		client_id: ID!
+		event: Event @connection
+		groups: [UserEventGroup] @connection( keyName: "byEvent", fields: ["id"] )
+	}
+
+type TrueChatRoom
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		room_name: String!
+		messages: [TrueChatMessage] @connection( keyName: "byRoom", fields: ["id"], sortField: "createdAt" )
+	}
+
+type TrueChatMessage
+	@auth ( rules: [{ allow: private }] )
+	@key( name: "byRoom", fields: ["room_id"] )
+	@model
+	{
+		id: ID!
+		cognito_sub: ID!
+		room_id: ID!
+		message: String!
+	}
+
+type Favourite
+	@auth ( rules: [{ allow: private }] )
+	@model
+	{
+		id: ID!
+		cognito_sub: ID!
+		client_id: ID!
+		event_id: ID!
+		session_id: ID
+		presenter_id: ID
+		attendee_cognito_sub: ID
+	}

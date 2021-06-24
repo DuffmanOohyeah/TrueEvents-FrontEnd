@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "trueeventsplatform",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtrueeventsplatform0da5de73",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
